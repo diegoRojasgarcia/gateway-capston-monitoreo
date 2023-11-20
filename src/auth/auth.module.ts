@@ -21,5 +21,6 @@ import { AUTH_SERVICE_NAME } from './auth.pb';
   ],
   controllers: [AuthController],
   providers: [AuthService],
+  exports: [AuthService],
 })
 export class AuthModule {}

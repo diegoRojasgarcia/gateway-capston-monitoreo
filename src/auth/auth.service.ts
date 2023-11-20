@@ -1,20 +1,24 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
-import { ValidateResponse } from './auth.pb';
+import {
+  AUTH_SERVICE_NAME,
+  AuthServiceClient,
+  ValidateResponse,
+} from './auth.pb';
 
 @Injectable()
 export class AuthService {
-  private auth;
+  private svc: AuthServiceClient;
 
-  @Inject('AuthService')
+  @Inject(AUTH_SERVICE_NAME)
   private readonly client: ClientGrpc;
 
   public onModuleInit(): void {
-    this.auth = this.client.getService('AuthService');
+    this.svc = this.client.getService(AUTH_SERVICE_NAME);
   }
 
   public async validate(token: string): Promise<ValidateResponse> {
-    return firstValueFrom(this.auth.validate(token));
+    return firstValueFrom(this.svc.validate({ token }));
   }
 }
