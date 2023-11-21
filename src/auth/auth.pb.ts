@@ -40,3 +40,5 @@ export interface AuthServiceClient {
 }
 
 export const AUTH_SERVICE_NAME = 'AuthService';
+
+export const AUTH_PACKAGE_NAME = 'auth';

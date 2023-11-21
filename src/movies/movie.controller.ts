@@ -27,7 +27,7 @@ export class MovieController implements OnModuleInit {
   }
 
   @Get('/getMovies')
-  // @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard)
   private async getMovies(): Promise<Observable<getMoviesResponse>> {
     return this.svc.getMovies({});
   }

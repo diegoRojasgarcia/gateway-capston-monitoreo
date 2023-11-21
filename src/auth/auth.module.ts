@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
-import { AUTH_SERVICE_NAME } from './auth.pb';
+import { AUTH_PACKAGE_NAME, AUTH_SERVICE_NAME } from './auth.pb';
 
 @Module({
   imports: [
@@ -13,7 +13,7 @@ import { AUTH_SERVICE_NAME } from './auth.pb';
         transport: Transport.GRPC,
         options: {
           url: 'localhost:3000',
-          package: 'auth',
+          package: AUTH_PACKAGE_NAME,
           protoPath: join(__dirname, 'protos/auth.proto'),
         },
       },
