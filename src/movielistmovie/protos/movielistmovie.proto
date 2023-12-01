@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package movielistmovie;
+
+service MovielistmovieService {
+  rpc createMovielistmovie (CreateMovielistmovieRequest) returns (CreateMovielistmovieResponse) {}
+  rpc getMoviesByIdMovielist (GetMoviesRequest) returns (GetMoviesResponse) {}
+}
+
+message CreateMovielistmovieRequest {
+  int32 idmovielist = 1;
+  int32 idmovie = 2;
+}
+
+message MovieListmovie {
+  int32 id = 1;
+  int32 idmovielist = 2;
+  int32 idmovie = 3;
+}
+
+message CreateMovielistmovieResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  MovieListmovie movielistmovie = 3;
+}
+
+
+message GetMoviesRequest {
+  int32 id = 1;
+}
+
+message Detalle {
+    int32 id = 1;
+    string originaltitle = 2;
+    string overview = 3;
+    string posterpath = 4;
+}
+
+message Movie {
+    int32 id = 1;
+    bool adult = 2;
+    Detalle detalle = 3;
+}
+
+message GetMoviesResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  repeated Movie movies = 3;
+}

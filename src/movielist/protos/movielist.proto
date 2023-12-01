@@ -4,7 +4,8 @@ package movielist;
 
 service MovielistService {
   rpc createMovielist (CreateMovielistRequest) returns (CreateMovielistResponse) {}
-  rpc findByUserId (FindMovieListByUserRequest) returns (FindMovieListByUserResponse) {}
+  rpc findMovielistByUserId (FindMovieListByUserRequest) returns (FindMovieListByUserResponse) {}
+  rpc findById (FindById) returns (FindByIdResponse) {}
 }
 
 message CreateMovielistRequest {
@@ -33,4 +34,15 @@ message FindMovieListByUserResponse {
   int32 status = 1;
   repeated string error = 2;
   repeated MovieList data = 3;
+}
+
+
+message FindById {
+  int32 id = 1;
+}
+
+message FindByIdResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  MovieList movielist = 3;
 }
