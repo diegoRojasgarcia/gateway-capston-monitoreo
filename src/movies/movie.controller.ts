@@ -1,8 +1,10 @@
 import {
+  Body,
   Controller,
   Get,
   Inject,
   OnModuleInit,
+  Post,
   UseGuards,
 } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
@@ -13,6 +15,8 @@ import {
   MovieServiceClient,
   getMoviesResponse,
   Empty,
+  getdetailmoviesTMDBResponse,
+  getMoviesTMDBResponse,
 } from './movie.pb';
 
 @Controller('movie')
@@ -29,6 +33,20 @@ export class MovieController implements OnModuleInit {
   @Get('/getMovies')
   @UseGuards(AuthGuard)
   private async getMovies(): Promise<Observable<getMoviesResponse>> {
-    return this.svc.getMovies({});
+    return this.svc.getAllMovies({});
+  }
+
+  @Post('/getMoviesTMDB')
+  private async getMoviesTMDB(
+    @Body() idPag: number,
+  ): Promise<Observable<getMoviesTMDBResponse>> {
+    return this.svc.getMoviesTMDB(idPag);
+  }
+
+  @Post('/getDetailMovieTMDB')
+  private async getDetailMoviesTMDB(): Promise<
+    Observable<getMoviesTMDBResponse>
+  > {
+    return this.svc.getMovieDetailTMDB({});
   }
 }

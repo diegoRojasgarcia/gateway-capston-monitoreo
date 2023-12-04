@@ -5,7 +5,9 @@ export const MOVIE_SERVICE_NAME = 'MoviesService';
 export const MOVIE_PACKAGE_NAME = 'movies';
 
 export interface MovieServiceClient {
-  getMovies(Empty): Observable<getMoviesResponse>;
+  getAllMovies(Empty): Observable<getMoviesResponse>;
+  getMoviesTMDB(getMoviesTMDB): Observable<getMoviesTMDBResponse>;
+  getMovieDetailTMDB(Empty): Observable<getdetailmoviesTMDBResponse>;
 }
 
 export interface Empty {}
@@ -27,4 +29,20 @@ export interface getMoviesResponse {
   status: number;
   error: string[];
   data: Movie[] | undefined;
+}
+
+export interface getMoviesTMDB {
+  id: number;
+}
+
+export interface getMoviesTMDBResponse {
+  status: number;
+  error: string[];
+  message: string;
+}
+
+export interface getdetailmoviesTMDBResponse {
+  status: number;
+  error: string[];
+  message: string;
 }
