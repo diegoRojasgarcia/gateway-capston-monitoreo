@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 
 export interface RegisterRequest {
   email: string;
+  nombre: string;
   password: string;
 }
 
@@ -19,6 +20,7 @@ export interface LoginResponse {
   status: number;
   error: string[];
   token: string;
+  user: string;
 }
 
 export interface ValidateRequest {
@@ -28,7 +30,17 @@ export interface ValidateRequest {
 export interface ValidateResponse {
   status: number;
   error: string[];
-  userId: number;
+  user: number;
+}
+
+export interface FindUserByIdRequest {
+  id: string;
+}
+
+export interface FindUserByIdResponse {
+  status: number;
+  error: string[];
+  user: number;
 }
 
 export interface AuthServiceClient {
@@ -37,6 +49,8 @@ export interface AuthServiceClient {
   login(request: LoginRequest): Observable<LoginResponse>;
 
   validate(request: ValidateRequest): Observable<ValidateResponse>;
+
+  FindUserById(request: FindUserByIdRequest): Observable<FindUserByIdResponse>;
 }
 
 export const AUTH_SERVICE_NAME = 'AuthService';
