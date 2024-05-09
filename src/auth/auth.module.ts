@@ -12,7 +12,7 @@ import { AUTH_PACKAGE_NAME, AUTH_SERVICE_NAME } from './type/auth.pb';
         name: AUTH_SERVICE_NAME,
         transport: Transport.GRPC,
         options: {
-          url: '192.168.100.25:3001',
+          url: 'localhost:3001',
           package: AUTH_PACKAGE_NAME,
           protoPath: join(__dirname, 'protos/auth.proto'),
         },
