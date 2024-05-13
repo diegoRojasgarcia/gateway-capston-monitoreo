@@ -17,7 +17,7 @@ export class DirecentosController {
     return this.direcentosService.getDirectorios();
   }
 
-  @Get('/date')
+  @Post('/date')
   private async getDirectoriosfecha(
     @Body() body: labInput,
   ): Promise<datesResponse> {
