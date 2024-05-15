@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import {
   DIRECENTOS_SERVICE_NAME,
   FoldersCentosServiceClient,
+  PcsResponse,
   createFileResponse,
   datesResponse,
   deletedResponse,
@@ -27,6 +28,11 @@ export class DirecentosService {
 
   public async getDates(payload): Promise<datesResponse> {
     return firstValueFrom(this.svc.getDates(payload));
+  }
+
+  public async getPcs(payload): Promise<PcsResponse> {
+    console.log(payload);
+    return firstValueFrom(this.svc.getPcs(payload));
   }
 
   public async writeToFile(payload): Promise<createFileResponse> {

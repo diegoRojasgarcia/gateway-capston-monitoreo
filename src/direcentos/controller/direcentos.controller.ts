@@ -1,11 +1,13 @@
 import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
 import { DirecentosService } from '../service/direcentos.service';
 import {
+  PcsResponse,
   createFileResponse,
   datesResponse,
   deletedResponse,
   directoriosResponse,
   labInput,
+  pcsInput,
 } from '../types/folderscentos.pb';
 
 @Controller('labs')
@@ -22,6 +24,13 @@ export class DirecentosController {
     @Body() body: labInput,
   ): Promise<datesResponse> {
     return this.direcentosService.getDates(body);
+  }
+
+  @Post('/pcs')
+  private async getDirectoriosCmptadores(
+    @Body() body: pcsInput,
+  ): Promise<PcsResponse> {
+    return this.direcentosService.getPcs(body);
   }
 
   @Post('/')
