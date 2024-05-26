@@ -10,6 +10,7 @@ export interface FoldersCentosServiceClient {
   getPcs(request: pcsInput): Observable<PcsResponse>;
   writeToFile(request: labInput): Observable<createFileResponse>;
   deletedFile(request: labInput): Observable<deletedResponse>;
+  existFile(request: labInput): Observable<existFileResponse>;
 }
 
 export interface Empty {}
@@ -22,6 +23,11 @@ export interface directoriosResponse {
 
 export interface labInput {
   lab: string;
+}
+
+export interface createFileInput {
+  lab: string;
+  actividad: string;
 }
 
 export interface datesResponse {
@@ -45,6 +51,12 @@ export interface createFileResponse {
   status: number;
   error: string[];
   created: boolean;
+}
+
+export interface existFileResponse {
+  status: number;
+  error: string[];
+  exist: boolean;
 }
 
 export interface deletedResponse {

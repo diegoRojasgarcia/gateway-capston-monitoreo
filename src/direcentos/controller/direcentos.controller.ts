@@ -2,10 +2,12 @@ import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
 import { DirecentosService } from '../service/direcentos.service';
 import {
   PcsResponse,
+  createFileInput,
   createFileResponse,
   datesResponse,
   deletedResponse,
   directoriosResponse,
+  existFileResponse,
   labInput,
   pcsInput,
 } from '../types/folderscentos.pb';
@@ -35,7 +37,7 @@ export class DirecentosController {
 
   @Post('/')
   private async writeToFile(
-    @Body() body: labInput,
+    @Body() body: createFileInput,
   ): Promise<createFileResponse> {
     return this.direcentosService.writeToFile(body);
   }
@@ -43,5 +45,10 @@ export class DirecentosController {
   @Delete('/')
   private async deletedFile(@Body() body: labInput): Promise<deletedResponse> {
     return this.direcentosService.deletedFile(body);
+  }
+
+  @Post('/existFile')
+  private async existFile(@Body() body: labInput): Promise<existFileResponse> {
+    return this.direcentosService.existFile(body);
   }
 }
