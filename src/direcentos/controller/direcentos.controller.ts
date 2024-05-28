@@ -3,6 +3,7 @@ import { DirecentosService } from '../service/direcentos.service';
 import {
   PcsResponse,
   createFileInput,
+  createFileProgInput,
   createFileResponse,
   datesResponse,
   deletedResponse,
@@ -40,6 +41,13 @@ export class DirecentosController {
     @Body() body: createFileInput,
   ): Promise<createFileResponse> {
     return this.direcentosService.writeToFile(body);
+  }
+
+  @Post('/prog')
+  private async writeToFileProg(
+    @Body() body: createFileProgInput,
+  ): Promise<createFileResponse> {
+    return this.direcentosService.writeToFileProg(body);
   }
 
   @Delete('/')

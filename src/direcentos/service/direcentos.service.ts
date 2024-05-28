@@ -39,6 +39,10 @@ export class DirecentosService {
     return firstValueFrom(this.svc.writeToFile(payload));
   }
 
+  public async writeToFileProg(payload): Promise<createFileResponse> {
+    return firstValueFrom(this.svc.writeToFileProg(payload));
+  }
+
   public async existFile(payload): Promise<existFileResponse> {
     return firstValueFrom(this.svc.existFile(payload));
   }

@@ -9,6 +9,7 @@ export interface FoldersCentosServiceClient {
   getDates(request: labInput): Observable<datesResponse>;
   getPcs(request: pcsInput): Observable<PcsResponse>;
   writeToFile(request: labInput): Observable<createFileResponse>;
+  writeToFileProg(request: InputFileProg): Observable<createFileResponse>;
   deletedFile(request: labInput): Observable<deletedResponse>;
   existFile(request: labInput): Observable<existFileResponse>;
 }
@@ -25,9 +26,19 @@ export interface labInput {
   lab: string;
 }
 
+export interface InputFileProg {
+  lab: string;
+  content: string;
+}
+
 export interface createFileInput {
   lab: string;
   actividad: string;
+}
+
+export interface createFileProgInput {
+  lab: string;
+  content: string;
 }
 
 export interface datesResponse {
