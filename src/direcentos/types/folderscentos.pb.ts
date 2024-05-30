@@ -7,6 +7,7 @@ export const DIRECENTOS_PACKAGE_NAME = 'direcentos';
 export interface FoldersCentosServiceClient {
   getDirectorios(Empty): Observable<directoriosResponse>;
   getDates(request: labInput): Observable<datesResponse>;
+  getActividades(request: actividadInput): Observable<actividadResponse>;
   getPcs(request: pcsInput): Observable<PcsResponse>;
   writeToFile(request: labInput): Observable<createFileResponse>;
   writeToFileProg(request: InputFileProg): Observable<createFileResponse>;
@@ -47,9 +48,21 @@ export interface datesResponse {
   folders: string[];
 }
 
+export interface actividadInput {
+  lab: string;
+  fecha: string;
+}
+
+export interface actividadResponse {
+  status: number;
+  error: string[];
+  folders: string[];
+}
+
 export interface pcsInput {
   lab: string;
   fecha: string;
+  actividad: string;
 }
 
 export interface PcsResponse {

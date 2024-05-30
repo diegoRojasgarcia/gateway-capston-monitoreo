@@ -3,6 +3,7 @@ import {
   DIRECENTOS_SERVICE_NAME,
   FoldersCentosServiceClient,
   PcsResponse,
+  actividadResponse,
   createFileResponse,
   datesResponse,
   deletedResponse,
@@ -29,6 +30,10 @@ export class DirecentosService {
 
   public async getDates(payload): Promise<datesResponse> {
     return firstValueFrom(this.svc.getDates(payload));
+  }
+
+  public async getActividades(payload): Promise<actividadResponse> {
+    return firstValueFrom(this.svc.getActividades(payload));
   }
 
   public async getPcs(payload): Promise<PcsResponse> {

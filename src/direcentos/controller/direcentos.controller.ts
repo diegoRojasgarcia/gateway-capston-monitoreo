@@ -2,6 +2,8 @@ import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
 import { DirecentosService } from '../service/direcentos.service';
 import {
   PcsResponse,
+  actividadInput,
+  actividadResponse,
   createFileInput,
   createFileProgInput,
   createFileResponse,
@@ -27,6 +29,13 @@ export class DirecentosController {
     @Body() body: labInput,
   ): Promise<datesResponse> {
     return this.direcentosService.getDates(body);
+  }
+
+  @Post('/actividades')
+  private async getDirectorioActividades(
+    @Body() body: actividadInput,
+  ): Promise<actividadResponse> {
+    return this.direcentosService.getActividades(body);
   }
 
   @Post('/pcs')
