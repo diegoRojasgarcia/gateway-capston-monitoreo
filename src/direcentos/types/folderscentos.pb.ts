@@ -10,12 +10,20 @@ export interface FoldersCentosServiceClient {
   getActividades(request: actividadInput): Observable<actividadResponse>;
   getPcs(request: pcsInput): Observable<PcsResponse>;
   writeToFile(request: labInput): Observable<createFileResponse>;
+  writeToFiles(request: writeToFilesInput): Observable<createFileResponse>;
   writeToFileProg(request: InputFileProg): Observable<createFileResponse>;
   deletedFile(request: labInput): Observable<deletedResponse>;
   existFile(request: labInput): Observable<existFileResponse>;
+  getLabsMonitoring(Empty): Observable<labsMonitoringResponse>;
 }
 
 export interface Empty {}
+
+export interface labsMonitoringResponse {
+  status: number;
+  error: string[];
+  folders: string[];
+}
 
 export interface directoriosResponse {
   status: number;
@@ -25,6 +33,12 @@ export interface directoriosResponse {
 
 export interface labInput {
   lab: string;
+}
+
+export interface writeToFilesInput {
+  lab: string;
+  filename: string;
+  content: string;
 }
 
 export interface InputFileProg {

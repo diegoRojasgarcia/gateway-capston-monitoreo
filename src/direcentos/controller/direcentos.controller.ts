@@ -12,7 +12,9 @@ import {
   directoriosResponse,
   existFileResponse,
   labInput,
+  labsMonitoringResponse,
   pcsInput,
+  writeToFilesInput,
 } from '../types/folderscentos.pb';
 
 @Controller('labs')
@@ -22,6 +24,11 @@ export class DirecentosController {
   @Get('/')
   private async getDirectorios(): Promise<directoriosResponse> {
     return this.direcentosService.getDirectorios();
+  }
+
+  @Get('/labsmonitoring')
+  private async labsmonitoring(): Promise<labsMonitoringResponse> {
+    return this.direcentosService.getLabsMonitoring();
   }
 
   @Post('/dates')
@@ -50,6 +57,13 @@ export class DirecentosController {
     @Body() body: createFileInput,
   ): Promise<createFileResponse> {
     return this.direcentosService.writeToFile(body);
+  }
+
+  @Post('/writeTofiles')
+  private async writeToFiles(
+    @Body() body: writeToFilesInput,
+  ): Promise<createFileResponse> {
+    return this.direcentosService.writeToFiles(body);
   }
 
   @Post('/prog')

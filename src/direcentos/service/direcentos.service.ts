@@ -9,6 +9,7 @@ import {
   deletedResponse,
   directoriosResponse,
   existFileResponse,
+  labsMonitoringResponse,
 } from '../types/folderscentos.pb';
 import { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
@@ -28,6 +29,10 @@ export class DirecentosService {
     return firstValueFrom(this.svc.getDirectorios({}));
   }
 
+  public async getLabsMonitoring(): Promise<labsMonitoringResponse> {
+    return firstValueFrom(this.svc.getLabsMonitoring({}));
+  }
+
   public async getDates(payload): Promise<datesResponse> {
     return firstValueFrom(this.svc.getDates(payload));
   }
@@ -42,6 +47,10 @@ export class DirecentosService {
 
   public async writeToFile(payload): Promise<createFileResponse> {
     return firstValueFrom(this.svc.writeToFile(payload));
+  }
+
+  public async writeToFiles(payload): Promise<createFileResponse> {
+    return firstValueFrom(this.svc.writeToFiles(payload));
   }
 
   public async writeToFileProg(payload): Promise<createFileResponse> {
