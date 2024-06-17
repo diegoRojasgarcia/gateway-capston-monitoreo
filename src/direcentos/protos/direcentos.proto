@@ -19,12 +19,6 @@ service DirecentosService {
 
 message Empty {}
 
-message labsmonitoringresponse {
-    int32 status = 1;
-    repeated string error = 2;
-    repeated string folders = 3;
-}
-
 message directoriosResponse {
     int32 status = 1;
     repeated string error = 2;
@@ -44,6 +38,7 @@ message datesResponse {
     repeated string error = 2;
     repeated Date folders = 3;
 }
+
 
 message Actividad {
     string nombre = 1;
@@ -123,9 +118,4 @@ message labsmonitoringresponse {
     repeated string error = 2;
     repeated Laboratorio folders = 3;
 }
-
-
-
-
-
 
