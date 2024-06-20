@@ -6,6 +6,7 @@ export const DIRECENTOS_PACKAGE_NAME = 'direcentos';
 
 export interface FoldersCentosServiceClient {
   getDirectorios(Empty): Observable<directoriosResponse>;
+  getLaboratorios(Empty): Observable<laboratoriosResponse>;
   getDates(request: labInput): Observable<datesResponse>;
   getActividades(request: actividadInput): Observable<actividadResponse>;
   getPcs(request: pcsInput): Observable<PcsResponse>;
@@ -26,6 +27,12 @@ export interface labsMonitoringResponse {
 }
 
 export interface directoriosResponse {
+  status: number;
+  error: string[];
+  folders: string[];
+}
+
+export interface laboratoriosResponse {
   status: number;
   error: string[];
   folders: string[];

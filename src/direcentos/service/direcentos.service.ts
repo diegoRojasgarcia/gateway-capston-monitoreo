@@ -9,6 +9,7 @@ import {
   deletedResponse,
   directoriosResponse,
   existFileResponse,
+  laboratoriosResponse,
   labsMonitoringResponse,
 } from '../types/folderscentos.pb';
 import { ClientGrpc } from '@nestjs/microservices';
@@ -27,6 +28,10 @@ export class DirecentosService {
 
   public async getDirectorios(): Promise<directoriosResponse> {
     return firstValueFrom(this.svc.getDirectorios({}));
+  }
+
+  public async getLaboratorios(): Promise<laboratoriosResponse> {
+    return firstValueFrom(this.svc.getLaboratorios({}));
   }
 
   public async getLabsMonitoring(): Promise<labsMonitoringResponse> {

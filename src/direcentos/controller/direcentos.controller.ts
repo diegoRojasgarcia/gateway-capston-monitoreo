@@ -12,6 +12,7 @@ import {
   directoriosResponse,
   existFileResponse,
   labInput,
+  laboratoriosResponse,
   labsMonitoringResponse,
   pcsInput,
   writeToFilesInput,
@@ -24,6 +25,11 @@ export class DirecentosController {
   @Get('/')
   private async getDirectorios(): Promise<directoriosResponse> {
     return this.direcentosService.getDirectorios();
+  }
+
+  @Get('/laboratorios')
+  private async getLaboratorios(): Promise<laboratoriosResponse> {
+    return this.direcentosService.getLaboratorios();
   }
 
   @Get('/labsmonitoring')
