@@ -9,6 +9,7 @@ export interface FoldersCentosServiceClient {
   getLaboratorios(Empty): Observable<laboratoriosResponse>;
   getDates(request: labInput): Observable<datesResponse>;
   getActividades(request: actividadInput): Observable<actividadResponse>;
+  getLastActividad(request: actividadInput): Observable<lastactividadResponse>;
   getPcs(request: pcsInput): Observable<PcsResponse>;
   writeToFile(request: labInput): Observable<createFileResponse>;
   writeToFiles(request: writeToFilesInput): Observable<createFileResponse>;
@@ -75,6 +76,16 @@ export interface actividadInput {
 }
 
 export interface actividadResponse {
+  status: number;
+  error: string[];
+  folders: string[];
+}
+
+export interface Actividad {
+  nombre: string;
+}
+
+export interface lastactividadResponse {
   status: number;
   error: string[];
   folders: string[];

@@ -11,6 +11,7 @@ import {
   existFileResponse,
   laboratoriosResponse,
   labsMonitoringResponse,
+  lastactividadResponse,
 } from '../types/folderscentos.pb';
 import { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
@@ -44,6 +45,10 @@ export class DirecentosService {
 
   public async getActividades(payload): Promise<actividadResponse> {
     return firstValueFrom(this.svc.getActividades(payload));
+  }
+
+  public async getLastActividad(payload): Promise<lastactividadResponse> {
+    return firstValueFrom(this.svc.getLastActividad(payload));
   }
 
   public async getPcs(payload): Promise<PcsResponse> {

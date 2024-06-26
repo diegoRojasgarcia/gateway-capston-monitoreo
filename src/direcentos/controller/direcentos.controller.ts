@@ -14,6 +14,7 @@ import {
   labInput,
   laboratoriosResponse,
   labsMonitoringResponse,
+  lastactividadResponse,
   pcsInput,
   writeToFilesInput,
 } from '../types/folderscentos.pb';
@@ -49,6 +50,13 @@ export class DirecentosController {
     @Body() body: actividadInput,
   ): Promise<actividadResponse> {
     return this.direcentosService.getActividades(body);
+  }
+
+  @Post('/lastactividad')
+  private async getlastActivid(
+    @Body() body: actividadInput,
+  ): Promise<lastactividadResponse> {
+    return this.direcentosService.getLastActividad(body);
   }
 
   @Post('/pcs')
