@@ -1,21 +1,36 @@
-import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
 import { DirecentosService } from '../service/direcentos.service';
 import {
+  A,
+  AResponse,
   PcsResponse,
+  Programacion,
+  WResponse,
   actividadInput,
   actividadResponse,
+  createAinput,
   createFileInput,
   createFileProgInput,
   createFileResponse,
+  createWinput,
   datesResponse,
+  deleteProgramacionInput,
+  deleteProgramacionResponse,
   deletedResponse,
   directoriosResponse,
   existFileResponse,
   labInput,
   laboratoriosResponse,
+  laboratoriosbdResponse,
   labsMonitoringResponse,
   lastactividadResponse,
   pcsInput,
+  programacionResponse,
+  programacionesResponse,
+  updateLabInput,
+  updateLabResponse,
+  updateProgramacionInput,
+  updateProgramacionResponse,
   writeToFilesInput,
 } from '../types/folderscentos.pb';
 
@@ -28,9 +43,50 @@ export class DirecentosController {
     return this.direcentosService.getDirectorios();
   }
 
-  @Get('/laboratorios')
+  @Get('/laboratorioscnts')
   private async getLaboratorios(): Promise<laboratoriosResponse> {
-    return this.direcentosService.getLaboratorios();
+    return this.direcentosService.getLaboratorioscnts();
+  }
+
+  @Get('/laboratoriosdb')
+  private async getLaboratoriosdb(): Promise<laboratoriosbdResponse> {
+    return this.direcentosService.getLaboratoriosdb();
+  }
+
+  @Post('/createProgramacion')
+  private async createProgramacion(
+    @Body() body: Programacion,
+  ): Promise<programacionResponse> {
+    return this.direcentosService.createProgramacion(body);
+  }
+
+  @Post('/createA')
+  private async createA(@Body() body: createAinput): Promise<AResponse> {
+    return this.direcentosService.createA(body);
+  }
+
+  @Post('/createW')
+  private async createW(@Body() body: createWinput): Promise<WResponse> {
+    return this.direcentosService.createW(body);
+  }
+
+  @Patch('/updateLaboratorio')
+  private async updateLaboratorio(
+    @Body() body: updateLabInput,
+  ): Promise<updateLabResponse> {
+    return this.direcentosService.updateLaboratoriodb(body);
+  }
+
+  @Patch('/updateProgramacion')
+  private async updateProgramacion(
+    @Body() body: updateProgramacionInput,
+  ): Promise<updateProgramacionResponse> {
+    return this.direcentosService.updateProgramacion(body);
+  }
+
+  @Get('/programaciones')
+  private async getProgramaciones(): Promise<programacionesResponse> {
+    return this.direcentosService.getProgramaciones();
   }
 
   @Get('/labsmonitoring')
@@ -90,6 +146,13 @@ export class DirecentosController {
   @Delete('/')
   private async deletedFile(@Body() body: labInput): Promise<deletedResponse> {
     return this.direcentosService.deletedFile(body);
+  }
+
+  @Delete('/deleteProgramacion')
+  private async deleteProgramacion(
+    @Body() body: deleteProgramacionInput,
+  ): Promise<deleteProgramacionResponse> {
+    return this.direcentosService.deletedProgramacion(body);
   }
 
   @Post('/existFile')

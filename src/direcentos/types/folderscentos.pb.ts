@@ -6,7 +6,7 @@ export const DIRECENTOS_PACKAGE_NAME = 'direcentos';
 
 export interface FoldersCentosServiceClient {
   getDirectorios(Empty): Observable<directoriosResponse>;
-  getLaboratorios(Empty): Observable<laboratoriosResponse>;
+  getLaboratorioscnts(Empty): Observable<laboratoriosResponse>;
   getDates(request: labInput): Observable<datesResponse>;
   getActividades(request: actividadInput): Observable<actividadResponse>;
   getLastActividad(request: actividadInput): Observable<lastactividadResponse>;
@@ -17,6 +17,103 @@ export interface FoldersCentosServiceClient {
   deletedFile(request: labInput): Observable<deletedResponse>;
   existFile(request: labInput): Observable<existFileResponse>;
   getLabsMonitoring(Empty): Observable<labsMonitoringResponse>;
+  getLaboratoriosdb(Empty): Observable<laboratoriosbdResponse>;
+  getProgramaciones(Empty): Observable<programacionesResponse>;
+  CreateProgramacion(Programacion): Observable<programacionResponse>;
+  CreateA(createAinput): Observable<AResponse>;
+  CreateW(createWinput): Observable<WResponse>;
+  UpdateLab(updateLabInput): Observable<updateLabResponse>;
+  UpdateProgramacion(
+    updateProgramacionInput,
+  ): Observable<updateProgramacionResponse>;
+  DeleteProgramacion(
+    deleteProgramacionInput,
+  ): Observable<deleteProgramacionResponse>;
+}
+
+export interface deleteProgramacionInput {
+  id: number;
+}
+
+export interface deleteProgramacionResponse {
+  status: number;
+  error: string[];
+  programacion: Programacion;
+}
+
+export interface updateProgramacionInput {
+  id: number;
+  actividad: string;
+  fecha: string;
+  horainicio: string;
+  horafin: string;
+}
+
+export interface updateProgramacionResponse {
+  status: number;
+  error: string[];
+  programacion: Programacion;
+}
+
+export interface updateLabInput {
+  id: number;
+  displayName: string;
+}
+
+export interface updateLabResponse {
+  status: number;
+  error: string[];
+  laboratorio: Laboratorio;
+}
+
+export interface createWinput {
+  websites: string[];
+}
+
+export interface W {
+  id: number;
+}
+
+export interface WResponse {
+  status: number;
+  error: string[];
+  websites: W;
+}
+
+export interface createAinput {
+  aplicaciones: string[];
+}
+
+export interface A {
+  id: number;
+}
+
+export interface AResponse {
+  status: number;
+  error: string[];
+  aplicaciones: A;
+}
+
+export interface Programacion {
+  id: number;
+  actividad: string;
+  laboratorio: string;
+  email: string;
+  fecha: string;
+  horainicio: string;
+  horafin: string;
+}
+
+export interface programacionResponse {
+  status: number;
+  error: string[];
+  programacion: Programacion;
+}
+
+export interface programacionesResponse {
+  status: number;
+  error: string[];
+  programaciones: Programacion[];
 }
 
 export interface Empty {}
@@ -24,7 +121,7 @@ export interface Empty {}
 export interface labsMonitoringResponse {
   status: number;
   error: string[];
-  folders: string[];
+  folders: Laboratorio[];
 }
 
 export interface directoriosResponse {
@@ -37,6 +134,17 @@ export interface laboratoriosResponse {
   status: number;
   error: string[];
   folders: string[];
+}
+
+export interface laboratoriosbdResponse {
+  status: number;
+  error: string[];
+  laboratorios: Laboratorio[];
+}
+
+export interface Laboratorio {
+  nombre: string;
+  displayName: string;
 }
 
 export interface labInput {

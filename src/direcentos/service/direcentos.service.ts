@@ -1,17 +1,25 @@
 import { Inject, Injectable } from '@nestjs/common';
 import {
+  AResponse,
   DIRECENTOS_SERVICE_NAME,
   FoldersCentosServiceClient,
   PcsResponse,
+  WResponse,
   actividadResponse,
   createFileResponse,
   datesResponse,
+  deleteProgramacionResponse,
   deletedResponse,
   directoriosResponse,
   existFileResponse,
   laboratoriosResponse,
+  laboratoriosbdResponse,
   labsMonitoringResponse,
   lastactividadResponse,
+  programacionResponse,
+  programacionesResponse,
+  updateLabResponse,
+  updateProgramacionResponse,
 } from '../types/folderscentos.pb';
 import { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
@@ -31,8 +39,38 @@ export class DirecentosService {
     return firstValueFrom(this.svc.getDirectorios({}));
   }
 
-  public async getLaboratorios(): Promise<laboratoriosResponse> {
-    return firstValueFrom(this.svc.getLaboratorios({}));
+  public async getLaboratorioscnts(): Promise<laboratoriosResponse> {
+    return firstValueFrom(this.svc.getLaboratorioscnts({}));
+  }
+
+  public async getLaboratoriosdb(): Promise<laboratoriosbdResponse> {
+    return firstValueFrom(this.svc.getLaboratoriosdb({}));
+  }
+
+  public async updateLaboratoriodb(payload): Promise<updateLabResponse> {
+    return firstValueFrom(this.svc.UpdateLab(payload));
+  }
+
+  public async updateProgramacion(
+    payload,
+  ): Promise<updateProgramacionResponse> {
+    return firstValueFrom(this.svc.UpdateProgramacion(payload));
+  }
+
+  public async getProgramaciones(): Promise<programacionesResponse> {
+    return firstValueFrom(this.svc.getProgramaciones({}));
+  }
+
+  public async createProgramacion(payload): Promise<programacionResponse> {
+    return firstValueFrom(this.svc.CreateProgramacion(payload));
+  }
+
+  public async createA(payload): Promise<AResponse> {
+    return firstValueFrom(this.svc.CreateA(payload));
+  }
+
+  public async createW(payload): Promise<WResponse> {
+    return firstValueFrom(this.svc.CreateW(payload));
   }
 
   public async getLabsMonitoring(): Promise<labsMonitoringResponse> {
@@ -73,5 +111,11 @@ export class DirecentosService {
 
   public async deletedFile(payload): Promise<deletedResponse> {
     return firstValueFrom(this.svc.deletedFile(payload));
+  }
+
+  public async deletedProgramacion(
+    payload,
+  ): Promise<deleteProgramacionResponse> {
+    return firstValueFrom(this.svc.DeleteProgramacion(payload));
   }
 }
