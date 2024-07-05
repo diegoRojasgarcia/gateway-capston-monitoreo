@@ -22,6 +22,7 @@ export interface FoldersCentosServiceClient {
   CreateProgramacion(Programacion): Observable<programacionResponse>;
   CreateA(createAinput): Observable<AResponse>;
   CreateW(createWinput): Observable<WResponse>;
+  CreateDuracion(createDuracioninput): Observable<DuracionResponse>;
   UpdateLab(updateLabInput): Observable<updateLabResponse>;
   UpdateProgramacion(
     updateProgramacionInput,
@@ -29,6 +30,18 @@ export interface FoldersCentosServiceClient {
   DeleteProgramacion(
     deleteProgramacionInput,
   ): Observable<deleteProgramacionResponse>;
+}
+
+export interface createDuracioninput {
+  laboratorio: string;
+  actividad: string;
+  horas: number;
+  minutos: number;
+}
+
+export interface DuracionResponse {
+  status: number;
+  error: string[];
 }
 
 export interface deleteProgramacionInput {

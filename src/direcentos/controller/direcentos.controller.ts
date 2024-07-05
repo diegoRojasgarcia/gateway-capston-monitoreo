@@ -3,12 +3,14 @@ import { DirecentosService } from '../service/direcentos.service';
 import {
   A,
   AResponse,
+  DuracionResponse,
   PcsResponse,
   Programacion,
   WResponse,
   actividadInput,
   actividadResponse,
   createAinput,
+  createDuracioninput,
   createFileInput,
   createFileProgInput,
   createFileResponse,
@@ -68,6 +70,13 @@ export class DirecentosController {
   @Post('/createW')
   private async createW(@Body() body: createWinput): Promise<WResponse> {
     return this.direcentosService.createW(body);
+  }
+
+  @Post('/createDuracion')
+  private async createDuracion(
+    @Body() body: createDuracioninput,
+  ): Promise<DuracionResponse> {
+    return this.direcentosService.createDuracion(body);
   }
 
   @Patch('/updateLaboratorio')

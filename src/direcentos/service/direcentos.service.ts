@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import {
   AResponse,
   DIRECENTOS_SERVICE_NAME,
+  DuracionResponse,
   FoldersCentosServiceClient,
   PcsResponse,
   WResponse,
@@ -67,6 +68,10 @@ export class DirecentosService {
 
   public async createA(payload): Promise<AResponse> {
     return firstValueFrom(this.svc.CreateA(payload));
+  }
+
+  public async createDuracion(payload): Promise<DuracionResponse> {
+    return firstValueFrom(this.svc.CreateDuracion(payload));
   }
 
   public async createW(payload): Promise<WResponse> {
