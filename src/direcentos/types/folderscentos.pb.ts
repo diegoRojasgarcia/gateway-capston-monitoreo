@@ -111,6 +111,7 @@ export interface Programacion {
   id: number;
   actividad: string;
   laboratorio: string;
+  labdisplayname: string;
   email: string;
   fecha: string;
   horainicio: string;
