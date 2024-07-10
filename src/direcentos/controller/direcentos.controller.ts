@@ -3,12 +3,15 @@ import { DirecentosService } from '../service/direcentos.service';
 import {
   A,
   AResponse,
+  Aplicacion,
+  AplicacionResponse,
   DuracionResponse,
   PcsResponse,
   Programacion,
   WResponse,
   actividadInput,
   actividadResponse,
+  aplicacionesResponse,
   createAinput,
   createDuracioninput,
   createFileInput,
@@ -16,6 +19,7 @@ import {
   createFileResponse,
   createWinput,
   datesResponse,
+  deleteAplicacionInput,
   deleteProgramacionInput,
   deleteProgramacionResponse,
   deletedResponse,
@@ -98,6 +102,11 @@ export class DirecentosController {
     return this.direcentosService.getProgramaciones();
   }
 
+  @Get('/aplicaciones')
+  private async getAplicaciones(): Promise<aplicacionesResponse> {
+    return this.direcentosService.getAplicaciones();
+  }
+
   @Get('/labsmonitoring')
   private async labsmonitoring(): Promise<labsMonitoringResponse> {
     return this.direcentosService.getLabsMonitoring();
@@ -162,6 +171,20 @@ export class DirecentosController {
     @Body() body: deleteProgramacionInput,
   ): Promise<deleteProgramacionResponse> {
     return this.direcentosService.deletedProgramacion(body);
+  }
+
+  @Delete('/deleteAplicacion')
+  private async DeleteAplicacion(
+    @Body() body: deleteAplicacionInput,
+  ): Promise<AplicacionResponse> {
+    return this.direcentosService.deletedAplicacion(body);
+  }
+
+  @Post('/createAplicacion')
+  private async CreateAplicacion(
+    @Body() body: Aplicacion,
+  ): Promise<AplicacionResponse> {
+    return this.direcentosService.createAplicacion(body);
   }
 
   @Post('/existFile')

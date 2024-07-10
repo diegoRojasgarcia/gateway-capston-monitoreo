@@ -30,6 +30,33 @@ export interface FoldersCentosServiceClient {
   DeleteProgramacion(
     deleteProgramacionInput,
   ): Observable<deleteProgramacionResponse>;
+  createAplicacion(createApliacioninput): Observable<AplicacionResponse>;
+  deleteAplicacion(deleteAplicacionInput): Observable<AplicacionResponse>;
+  getAplicaciones(Empty): Observable<aplicacionesResponse>;
+}
+
+export interface aplicacionesResponse {
+  status: number;
+  error: string[];
+  aplicaciones: Aplicacion[];
+}
+
+export interface Aplicacion {
+  nombre: string;
+}
+
+export interface createApliacioninput {
+  nombre: string;
+}
+
+export interface deleteAplicacionInput {
+  id: number;
+}
+
+export interface AplicacionResponse {
+  status: number;
+  error: string[];
+  aplicacion: Aplicacion;
 }
 
 export interface createDuracioninput {

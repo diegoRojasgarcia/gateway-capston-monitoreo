@@ -1,12 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
 import {
   AResponse,
+  AplicacionResponse,
   DIRECENTOS_SERVICE_NAME,
   DuracionResponse,
   FoldersCentosServiceClient,
   PcsResponse,
   WResponse,
   actividadResponse,
+  aplicacionesResponse,
   createFileResponse,
   datesResponse,
   deleteProgramacionResponse,
@@ -60,6 +62,10 @@ export class DirecentosService {
 
   public async getProgramaciones(): Promise<programacionesResponse> {
     return firstValueFrom(this.svc.getProgramaciones({}));
+  }
+
+  public async getAplicaciones(): Promise<aplicacionesResponse> {
+    return firstValueFrom(this.svc.getAplicaciones({}));
   }
 
   public async createProgramacion(payload): Promise<programacionResponse> {
@@ -122,5 +128,13 @@ export class DirecentosService {
     payload,
   ): Promise<deleteProgramacionResponse> {
     return firstValueFrom(this.svc.DeleteProgramacion(payload));
+  }
+
+  public async deletedAplicacion(payload): Promise<AplicacionResponse> {
+    return firstValueFrom(this.svc.deleteAplicacion(payload));
+  }
+
+  public async createAplicacion(payload): Promise<AplicacionResponse> {
+    return firstValueFrom(this.svc.createAplicacion(payload));
   }
 }
